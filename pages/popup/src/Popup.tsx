@@ -1,6 +1,6 @@
 import '@src/Popup.css';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import EnhancedToolbar from './components/Toolbar';
 import { Routing } from './routes';
@@ -15,14 +15,15 @@ const Popup = () => {
   const { currentPage } = useAppContext();
 
   const navigate = useNavigate();
-
+  const location = useLocation();
   console.debug('popup page loaded');
 
   useEffect(() => {
-    if (currentPage) {
+    const params = new URLSearchParams(location.search);
+    if (currentPage && params.get('popup') !== 'true') {
       navigate(currentPage);
     }
-  }, [currentPage, navigate]);
+  }, [currentPage, location.search, navigate]);
 
   return (
     <ThemeProvider theme={theme}>

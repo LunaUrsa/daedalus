@@ -16,6 +16,8 @@ const ShortcutsPage: React.FC = () => {
 
   const { shortcuts, setShortcuts } = useAppContext();
 
+  document.title = 'Shortcuts';
+
   // When the user leaves the input field, save the shortcuts to the local storage
   const handleBlur = () => {
     // console.log("Saving shortcuts to storage:", shortcuts);

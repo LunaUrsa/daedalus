@@ -13,8 +13,6 @@ import {
 import codeMirrorHook from './codeMirrorHook';
 import handleShortcuts from './shortcuts';
 
-
-
 function websiteCssCheck(activeTab: chrome.tabs.Tab): boolean {
   if (!activeTab?.url
     || activeTab.url.startsWith('chrome')
@@ -127,6 +125,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
   if (changeInfo.status === 'complete') {
     insertUserModCss();
     injectCodeMirrorHook();
-    handleShortcuts();
   }
 });
+

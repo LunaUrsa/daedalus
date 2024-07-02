@@ -26,6 +26,7 @@ const ShortcutListener = () => {
       // Find a shortcut that matches the pressed key
       const shortcut = shortcuts.find((s: Shortcut) => s.key === event.key.toUpperCase());
       if (shortcut) {
+
         // Go through siteMap.json and find the URL associated with the shortcut
         // The shortcut.destination is the key-path in siteMap.json
         // For example, if shortcut.destination is "Google > Search", the URL is siteMap.Google.Search
@@ -47,7 +48,8 @@ const ShortcutListener = () => {
         }
 
         // Get the active tab and its url
-        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+        chrome.tabs.query({ active: true, currentWindow: false }, tabs => {
+          console.log('tabs', tabs)
           const activeTab = tabs[0];
           if (!activeTab.id) {
             return;
@@ -57,18 +59,28 @@ const ShortcutListener = () => {
             return;
           }
 
-          const baseUrl = activeTab.url.split('/')[2];
-          console.log('baseUrl', baseUrl);
-
           // Replace <baseUrl> in the URL with the actual base URL of the current window
+          const baseUrl = activeTab.url.split('/')[2];
           const finalUrl = `https://${urlProperty?.replace('<baseUrl>', baseUrl)}`;
-          // console.log("finalUrl", finalUrl);
-          // chrome.tabs.update(activeTab.id, { url: finalUrl })
 
           // alert(`Navigating to: ${finalUrl}`); // Display a message for testing
           // window.location.href = finalUrl; // Navigate to the URL associated with the shortcut
-          window.open(finalUrl, '_blank');
+          // Close the popup window if it exists
+          chrome.storage.local.get('popupWindowId', (result) => {
+            if (result.popupWindowId) {
+              chrome.windows.remove(result.popupWindowId, () => {
+                chrome.tabs.create({ url: finalUrl });
+                // Optionally, clear the stored popup window ID
+                chrome.storage.local.remove('popupWindowId');
+              });
+            } else {
+              chrome.tabs.create({ url: finalUrl });
+            }
+          });
+
         });
+      } else {
+        console.log('No shortcut found for key:', event.key);
       }
     };
 

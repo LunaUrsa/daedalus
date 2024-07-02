@@ -68,6 +68,13 @@ const manifest = {
   //   // sandbox: "sandbox allow-scripts allow-forms allow-popups allow-m odals; script-src 'self' 'unsafe-inline' 'unsafe-eval'; child-src 'self';"
   // },
   commands: {
+    "_execute_action": {
+      suggested_key: {
+        default: 'Ctrl+Tab',
+        mac: 'Command+Tab',
+      },
+      description: "Open the extension"
+    },
     'Open Shortcuts': {
       suggested_key: {
         default: 'Ctrl+Space',
