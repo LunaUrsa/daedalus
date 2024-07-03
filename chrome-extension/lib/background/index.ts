@@ -31,7 +31,7 @@ function websiteScriptCheck(activeTab: chrome.tabs.Tab): boolean {
   if (!activeTab?.url
     || activeTab.url.startsWith('chrome')
     || !activeTab.url.includes('cpq.cloud.sap')
-    || !activeTab.url.includes('/scriptWorkbench')) {
+    || !activeTab.url.includes('/ScriptWorkbench')) {
     // console.debug(`Not applying mods to ${activeTab?.url}`)
     chrome.action.setBadgeText({ text: '' });
     return false;
@@ -79,12 +79,10 @@ async function insertUserModCss() {
 }
 
 async function injectCodeMirrorHook() {
-
   chrome.tabs.query({ active: true, currentWindow: true }, async tabs => {
     const activeTab = tabs[0];
 
     if (!websiteScriptCheck(activeTab)) return;
-    // console.log('Injecting code changes')
     if (!activeTab?.url || !activeTab.id || activeTab.url.startsWith('chrome')) {
       return;
     }
