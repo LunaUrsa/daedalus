@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { python } from '@codemirror/lang-python';
 import { dracula } from '@uiw/codemirror-theme-dracula';
 import { Annotation, EditorState, Transaction } from '@codemirror/state';
@@ -26,8 +27,15 @@ import {
   syntaxHighlighting,
   defaultHighlightStyle,
   bracketMatching,
-  foldAll,
   unfoldAll,
+  // syntaxTree,
+  // foldable,
+  // foldEffect,
+  foldCode,
+  syntaxTree,
+  foldable,
+  foldEffect,
+  foldAll,
 } from '@codemirror/language';
 import { indentWithTab, history, defaultKeymap, historyKeymap, undo, redo } from '@codemirror/commands';
 import { search, highlightSelectionMatches, searchKeymap } from '@codemirror/search';
@@ -255,7 +263,8 @@ export const handleFoldClick = (
         unfoldAll(editorViewRef.current);
       } else {
         // console.log('folding code');
-        foldAll(editorViewRef.current);
+        // foldAll(editorViewRef.current);
+        foldAllRecursive(editorViewRef.current);
       }
     } else {
       console.error('CodeMirror editor not found');
@@ -263,6 +272,26 @@ export const handleFoldClick = (
     return !prevValue;
   });
 };
+
+// Function to fold all levels of code
+function foldAllRecursive(view: EditorView) {
+  const state = view.state;
+
+  // Traverse the syntax tree and collect all foldable ranges
+  const foldRanges: { from: number, to: number }[] = [];
+  syntaxTree(state).iterate({
+    enter(node) {
+      const isFoldable = foldable(state, node.from, node.to)
+      if (isFoldable) {
+        foldRanges.push({ from: isFoldable.from, to: isFoldable.to });
+      }
+    }
+  });
+
+  view.dispatch({
+    effects: foldRanges.map(range => foldEffect.of({ from: range.from, to: range.to }))
+  });
+}
 
 export const handleFullScreenClick = (setIsFullscreen: React.Dispatch<React.SetStateAction<boolean>>) => {
   console.log('Full screen button clicked');
