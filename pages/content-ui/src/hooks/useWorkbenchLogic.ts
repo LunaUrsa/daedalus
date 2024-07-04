@@ -11,9 +11,6 @@ export const useWorkbenchLogic = (userOptions: UserOptions) => {
   const traceRef = useRef<HTMLElement | null>(null);
   const mainViewRef = useCodeMirror(userOptions);
 
-  const scriptWindow = document.querySelector('cpq-scripting-codemirror') as HTMLElement;
-  console.log('scriptWindow on load', scriptWindow);
-
   useEffect(() => {
     const getScriptWindow = () => {
       const scriptWindow = document.querySelector('cpq-scripting-codemirror') as HTMLElement;
@@ -41,7 +38,6 @@ export const useWorkbenchLogic = (userOptions: UserOptions) => {
     // }
 
     if (window.location.href.includes('ScriptWorkbench')) {
-      console.log('scriptworkbench');
       const root = document.getElementById('sap-cpq-tools');
       const toolbarElement = document.getElementsByClassName('dev-admin-page')[0];
       if (toolbarElement && root) {

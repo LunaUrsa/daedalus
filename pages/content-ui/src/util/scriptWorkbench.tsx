@@ -3,9 +3,16 @@ import { saveToStorage } from '@chrome-extension-boilerplate/shared/lib/utils';
 import { EditorView } from 'codemirror';
 import { SelectChangeEvent } from 'node_modules/@mui/material';
 
-export const handleRunClick = (event: React.MouseEvent, scriptToolbarRef: React.RefObject<HTMLElement>) => {
+export const handleRunClick = (
+  event: React.MouseEvent,
+  scriptToolbarRef: React.RefObject<HTMLElement>,
+  userOptions: UserOptions,
+) => {
   // console.log('Run button clicked!')
   event.preventDefault();
+  if (userOptions.workbenchAlwaysClearTraces) {
+    handleTraceClearClick(event);
+  }
   if (scriptToolbarRef.current) {
     const runButton = scriptToolbarRef.current.querySelector('.col-sm-6 button') as HTMLAnchorElement;
     console.log('runButton:', runButton);
@@ -195,6 +202,12 @@ export const handleApiExplorerClick = (event: React.MouseEvent) => {
       (buttonList.children[3] as HTMLAnchorElement).click();
     }
   }
+};
+
+export const handleAlwaysClearTraces = (
+  setAlwaysClearTraces: React.Dispatch<React.SetStateAction<boolean>>,
+) => {
+  setAlwaysClearTraces(prevValue => !prevValue);
 };
 
 // const handleResize = (event: React.SyntheticEvent<Element>, data: ResizeCallbackData) => {

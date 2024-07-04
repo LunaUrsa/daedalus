@@ -1,4 +1,15 @@
-import { Button, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  Tooltip,
+  Typography
+} from '@mui/material';
 import {
   KeyboardArrowUp,
   KeyboardArrowDown,
@@ -24,6 +35,7 @@ import {
   handleApiExplorerClick,
   handleTraceClearClick,
   handleCustomClick,
+  handleAlwaysClearTraces,
 } from '../util/scriptWorkbench';
 import { useEffect, useRef, useState } from 'react';
 // import useAppContext from '@chrome-extension-boilerplate/shared/lib/hooks/useAppContext';
@@ -51,13 +63,13 @@ const Toolbar: React.FC<ToolbarProps> = ({ editorViewRef }) => {
     chrome.storage.local.get('userOptions', result => {
       if (result.userOptions) {
         const storedUserOptions = JSON.parse(result.userOptions);
-        console.log('storedUserOptions:', storedUserOptions.workbenchIsSplit);
         setUserOptions(storedUserOptions);
       }
     });
   }, [setUserOptions]);
 
   const [isFolded, setIsFolded] = useState<boolean>(false);
+  const [alwaysClearTraces, setAlwaysClearTraces] = useState<boolean>(userOptions.workbenchAlwaysClearTraces || true);
   // const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
   const [scriptingMode, setScriptingMode] = useState<ScriptingModes>(userOptions.scriptingMode || 'Default');
 
@@ -76,7 +88,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ editorViewRef }) => {
 
   const buttonRun = () => (
     <Button
-      onClick={e => handleRunClick(e, scriptToolbarRef)}
+      onClick={e => handleRunClick(e, scriptToolbarRef, userOptions)}
       tabIndex={0}
       variant="contained"
       color="primary"
@@ -125,24 +137,55 @@ const Toolbar: React.FC<ToolbarProps> = ({ editorViewRef }) => {
   );
 
   const buttonClearTraces = () => (
-    <Button
-      onClick={handleTraceClearClick}
-      tabIndex={0}
-      variant="contained"
-      color="secondary"
+    <Box
       sx={{
-        height: '30px',
-        padding: '0 16px',
-        borderRadius: '5px',
         display: 'flex',
         alignItems: 'center',
-        lineHeight: 'normal',
-        fontSize: '14px',
+        backgroundColor: 'secondary.main',
+        borderRadius: '5px',
+        padding: '0 8px',
       }}
-      startIcon={<Clear />}>
-      <Typography sx={{ textTransform: 'none', fontSize: 'inherit' }}>Clear Trace</Typography>
-    </Button>
+    >
+      <Button
+        onClick={handleTraceClearClick}
+        tabIndex={0}
+        variant="contained"
+        color="secondary"
+        sx={{
+          height: '30px',
+          padding: '0 8px',
+          borderRadius: '5px',
+          display: 'flex',
+          alignItems: 'center',
+          lineHeight: 'normal',
+          fontSize: '14px',
+          boxShadow: 'none',
+          textTransform: 'none',
+          minWidth: 'auto',
+        }}
+        startIcon={<Clear />}
+      >
+        <Typography sx={{ textTransform: 'none', fontSize: 'inherit' }}>
+          Clear Traces
+        </Typography>
+      </Button>
+      <Tooltip title="Clear traces on every run">
+        <Checkbox
+          checked={alwaysClearTraces}
+          onChange={() => handleAlwaysClearTraces(setAlwaysClearTraces)}
+          sx={{
+            color: 'white',
+            '&.Mui-checked': {
+              color: 'white',
+            },
+            padding: 0,
+            marginLeft: 1,
+          }}
+        />
+      </Tooltip>
+    </Box>
   );
+
   const buttonFold = () => (
     <Button
       onClick={() => handleFoldClick(setIsFolded, editorViewRef)}

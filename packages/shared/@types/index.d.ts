@@ -112,6 +112,7 @@ interface UserOptions {
   scriptingMode: ScriptingModes;
   workbenchCode: string;
   workbenchIsSplit: boolean;
+  workbenchAlwaysClearTraces: boolean;
   // downloadLocations: { [key: string]: string };
 }
 
