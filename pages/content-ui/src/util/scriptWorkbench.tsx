@@ -15,7 +15,7 @@ export const handleRunClick = (
   }
   if (scriptToolbarRef.current) {
     const runButton = scriptToolbarRef.current.querySelector('.col-sm-6 button') as HTMLAnchorElement;
-    console.log('runButton:', runButton);
+    // console.log('runButton:', runButton);
     if (runButton) {
       runButton.click();
       // console.log('Run element clicked!')
@@ -47,14 +47,55 @@ export const updateHiddenElement = (
 export const hideToastContainer = (traceRef: React.RefObject<HTMLElement>) => {
   if (traceRef.current) {
     const hideToastContainer = (mutationsList: MutationRecord[]) => {
-      // Function to hide the toast container once it appears
       for (const mutation of mutationsList) {
         if (mutation.type === 'childList') {
           mutation.addedNodes.forEach(node => {
-            if (node instanceof HTMLElement && node.id === 'toast-container') {
+            if (node instanceof HTMLElement && node.id === 'toast-container' && traceRef.current) {
+              // Hide the toast container
               node.style.display = 'none';
-              // Stop observing once the toast-container is found and hidden
-              // observer.disconnect();
+
+              // Extract the message from the toast container
+              let toastMessage = node.innerText || node.textContent;
+              console.log('toastMessage1:', toastMessage)
+
+              // Check if the table already contains a 'toast-row'
+              const existingToastRow = traceRef.current.querySelector('#toast-row');
+
+              if (toastMessage && !existingToastRow) {
+                // toastMessage = toastMessage.slice(1)
+                const tableContainer = traceRef.current;
+                if (toastMessage.includes('Success')) {
+                  toastMessage = toastMessage.slice(1)
+                  // tableContainer.style.backgroundColor = '#1d1d1d';
+                  tableContainer.style.color = '#28a745';
+                } else if (toastMessage.includes('Error')) {
+                  // tableContainer.style.backgroundColor = '#1d1d1d';
+                  tableContainer.style.color = '#dc3545';
+
+                  // Remove the '(x.xxx s)' from the error message
+                  toastMessage = 'Error: ' + toastMessage.slice(toastMessage.indexOf(')') + 1);
+
+                }
+                console.log('toastMessage2:', toastMessage)
+
+
+                // Create a new table row with the toast message
+                const newRow = document.createElement('tr');
+                newRow.id = 'toast-row';
+                const newTd = document.createElement('td');
+                newTd.id = 'toast-message';
+                newTd.colSpan = 2; // Ensure the new row spans both columns
+                // remove the first character of the toast message
+                newTd.textContent = toastMessage;
+                newRow.appendChild(newTd);
+
+                // Insert the new row as the first row in the table
+                const tableBody = traceRef.current.querySelector('tbody');
+                // console.debug('tableBody:', tableBody);
+                if (tableBody) {
+                  tableBody.insertBefore(newRow, tableBody.firstChild);
+                }
+              }
             }
           });
         }
@@ -64,6 +105,41 @@ export const hideToastContainer = (traceRef: React.RefObject<HTMLElement>) => {
     // This will hide the "success" toast that appears when the script is run
     const toastObserver = new MutationObserver(hideToastContainer);
     toastObserver.observe(document.body, { childList: true, subtree: true });
+  }
+};
+
+export const modifyTraceTable = (traceRef: React.RefObject<HTMLElement>) => {
+  if (traceRef.current) {
+
+    const modifyTableRows = (mutationsList: MutationRecord[]) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+          // console.log('Child list mutation detected:', mutation);
+          mutation.addedNodes.forEach(node => {
+            if (node instanceof HTMLElement) {
+              // console.log('Added node:', node);
+              if (node.matches('tr')) {
+                // console.log('Node is a <tr>:', node);
+                // console.log('Processing node:', node);
+                const firstTd = node.children[0];
+                // console.log('firstTd:', firstTd);
+                if (firstTd
+                  && !firstTd.hasAttribute('data-bind')
+                  && firstTd.id !== 'toast-message' // Because we add the new toast message to the table
+                ) {
+                  firstTd.remove();
+                }
+              }
+            }
+          });
+        }
+      }
+    };
+
+    const tableObserver = new MutationObserver(modifyTableRows);
+    tableObserver.observe(traceRef.current, { childList: true, subtree: true });
+  } else {
+    console.error('traceRef.current is null');
   }
 };
 
@@ -136,13 +212,17 @@ export const handleModeChange = (
 };
 
 export const handleTraceClearClick = (event: React.MouseEvent) => {
-  console.log('Clear traces button clicked');
+  // console.log('Clear traces button clicked');
   event.preventDefault();
   const clearLink = document.querySelector('.tracetitle a') as HTMLAnchorElement;
-  console.log('clearLink:', clearLink);
   if (clearLink) {
     clearLink.click();
-    console.log('Clear traces button clicked');
+  }
+
+  // Also delete the toast-row if it exists
+  const toastRow = document.getElementById('toast-row');
+  if (toastRow) {
+    toastRow.remove();
   }
 };
 

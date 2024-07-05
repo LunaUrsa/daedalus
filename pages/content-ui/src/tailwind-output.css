@@ -604,12 +604,12 @@ video {
   display: flex;
 }
 
-.contents {
-  display: contents;
+.table {
+  display: table;
 }
 
-.hidden {
-  display: none;
+.contents {
+  display: contents;
 }
 
 .transform {
