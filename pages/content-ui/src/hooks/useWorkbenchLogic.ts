@@ -4,7 +4,7 @@ import {
   autoScrollTrace,
   modifyTraceTable,
   repositionTraceWindow,
-  updateHiddenElement,
+  handleEditorChange,
 } from '../util/scriptWorkbench';
 import { useCodeMirror } from '@src/util/codeMirror';
 
@@ -57,7 +57,7 @@ export const useWorkbenchLogic = (userOptions: UserOptions) => {
       modifyTraceTable(traceRef);
       autoScrollTrace(traceRef);
       repositionTraceWindow(traceRef);
-      updateHiddenElement(mainViewRef, userOptions);
+      handleEditorChange(mainViewRef, userOptions);
     } else if (window.location.href.includes('global-scripts')) {
       console.log('globalscripts');
       const root = document.getElementById('sap-cpq-tools');

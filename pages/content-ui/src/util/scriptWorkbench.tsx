@@ -23,25 +23,24 @@ export const handleRunClick = (
   }
 };
 
-export const updateHiddenElement = (
+export const handleEditorChange = (
   editorViewRef: React.MutableRefObject<EditorView | null>,
   userOptions: UserOptions,
 ) => {
   if (!editorViewRef.current) return;
   const text = editorViewRef.current.state.doc.toString();
+
+  // Update the hidden element
   const hiddenContent = document.getElementById('hiddenContent');
   if (hiddenContent && hiddenContent.textContent !== text) {
     hiddenContent.textContent = text;
     const changeEvent = new Event('change', { bubbles: true });
     hiddenContent.dispatchEvent(changeEvent);
     userOptions.workbenchCode = text;
-    // setUserOptions((prevValues) => ({
-    //   ...prevValues,
-    //   ['workbenchCode']: text,
-    // }));
     saveToStorage('userOptions', userOptions);
-    //   // console.log('set userOptions:', userOptions)
   }
+
+  // Lint the code
 };
 
 export const hideToastContainer = (traceRef: React.RefObject<HTMLElement>) => {
@@ -56,7 +55,7 @@ export const hideToastContainer = (traceRef: React.RefObject<HTMLElement>) => {
 
               // Extract the message from the toast container
               let toastMessage = node.innerText || node.textContent;
-              console.log('toastMessage1:', toastMessage)
+              // console.log('toastMessage1:', toastMessage)
 
               // Check if the table already contains a 'toast-row'
               const existingToastRow = traceRef.current.querySelector('#toast-row');
@@ -76,7 +75,7 @@ export const hideToastContainer = (traceRef: React.RefObject<HTMLElement>) => {
                   toastMessage = 'Error: ' + toastMessage.slice(toastMessage.indexOf(')') + 1);
 
                 }
-                console.log('toastMessage2:', toastMessage)
+                // console.log('toastMessage2:', toastMessage)
 
 
                 // Create a new table row with the toast message
