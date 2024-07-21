@@ -31,21 +31,43 @@ import {
   // syntaxTree,
   // foldable,
   // foldEffect,
-  foldCode,
+  // foldCode,
   syntaxTree,
   foldable,
   foldEffect,
-  foldAll,
+  // foldAll,
 } from '@codemirror/language';
 import { indentWithTab, history, defaultKeymap, historyKeymap, undo, redo } from '@codemirror/commands';
 import { search, highlightSelectionMatches, searchKeymap } from '@codemirror/search';
 import { closeBrackets, autocompletion, closeBracketsKeymap, completionKeymap } from '@codemirror/autocomplete';
-import { lintGutter, lintKeymap } from '@codemirror/lint';
+import { Diagnostic, lintGutter, lintKeymap, linter } from '@codemirror/lint';
 import { vscodeKeymap } from '@replit/codemirror-vscode-keymap';
 // import { oneDark, oneDarkTheme } from "@codemirror/theme-one-dark";
-import { updateHiddenElement } from './scriptWorkbench';
+import { handleEditorChange } from './scriptWorkbench';
 import { zebraStripes } from './zebraStripes';
 import { saveToStorage } from '@chrome-extension-boilerplate/shared/lib/utils';
+// import { asyncRun } from './py-worker';
+
+// const pythonLinter = () => {
+//   return linter(async (view) => {
+//     const { results, error } = await asyncRun(view.state.doc.toString(), {});
+//     console.log('lintResults', results)
+//     console.log('lintResults', error)
+
+//     if (error) {
+//       console.error('Linting error:', error);
+//       return [];
+//     }
+
+//     // // eslint-disable-next-line @typescript-eslint/no-explicit-any
+//     return results.map((result: any) => ({
+//       from: view.state.doc.line(result.line).from,
+//       to: view.state.doc.line(result.line).to,
+//       severity: 'warning',
+//       message: result.message
+//     })) as Diagnostic[];
+//   });
+// };
 
 export const logoString = `
       ⠀⠀⠀⠀⢀⣴⢿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -92,6 +114,7 @@ const extensions = (userOptions: UserOptions, editorViewRef: React.MutableRefObj
 
   // Language extension
   python(),
+  // pythonLinter(),
 
   // # Core Extensions
 
@@ -167,7 +190,7 @@ const extensions = (userOptions: UserOptions, editorViewRef: React.MutableRefObj
   // Primitives
   EditorView.updateListener.of((update: ViewUpdate) => {
     if (update.docChanged) {
-      updateHiddenElement(editorViewRef, userOptions);
+      handleEditorChange(editorViewRef, userOptions);
     }
   }),
 ];
