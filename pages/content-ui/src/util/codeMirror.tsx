@@ -40,7 +40,7 @@ import {
 import { indentWithTab, history, defaultKeymap, historyKeymap, undo, redo } from '@codemirror/commands';
 import { search, highlightSelectionMatches, searchKeymap } from '@codemirror/search';
 import { closeBrackets, autocompletion, closeBracketsKeymap, completionKeymap } from '@codemirror/autocomplete';
-import { Diagnostic, lintGutter, lintKeymap, linter } from '@codemirror/lint';
+import { lintGutter, lintKeymap } from '@codemirror/lint';
 import { vscodeKeymap } from '@replit/codemirror-vscode-keymap';
 // import { oneDark, oneDarkTheme } from "@codemirror/theme-one-dark";
 import { handleEditorChange } from './scriptWorkbench';
