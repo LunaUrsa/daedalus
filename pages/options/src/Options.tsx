@@ -1,6 +1,6 @@
 import '@src/Options.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { withErrorBoundary, withSuspense } from '@chrome-extension-boilerplate/shared';
+import { withErrorBoundary, withSuspense } from '@extension/shared';
 import OptionsPage from '../../popup/src/views/OptionsPage';
 
 const theme = createTheme({

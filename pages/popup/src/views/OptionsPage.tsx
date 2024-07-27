@@ -23,9 +23,9 @@ import {
   // defaultCodePreferences,
   defaultShortcuts,
   defaultMods,
-} from '@chrome-extension-boilerplate/shared/lib/constants';
-import { saveToStorage } from '@chrome-extension-boilerplate/shared/lib/utils';
-import useAppContext from '@chrome-extension-boilerplate/shared/lib/hooks/useAppContext';
+} from '@extension/shared/lib/constants';
+import { saveToStorage } from '@extension/shared/lib/utils';
+import useAppContext from '@extension/shared/lib/hooks/useAppContext';
 // import {
 //   MouseEvent,
 //   useState

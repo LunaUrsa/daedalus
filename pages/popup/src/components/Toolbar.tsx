@@ -8,8 +8,8 @@ import HelpIcon from '@mui/icons-material/Help';
 import { Link as RouterLink } from 'react-router-dom';
 import { Functions, AddCircle } from '@mui/icons-material';
 import { v4 as uuidv4 } from 'uuid';
-import { saveToStorage } from '@chrome-extension-boilerplate/shared/lib/utils';
-import useAppContext from '@chrome-extension-boilerplate/shared/lib/hooks/useAppContext';
+import { saveToStorage } from '@extension/shared/lib/utils';
+import useAppContext from '@extension/shared/lib/hooks/useAppContext';
 
 const EnhancedToolbar: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

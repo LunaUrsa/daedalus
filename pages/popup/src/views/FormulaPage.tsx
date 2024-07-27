@@ -5,7 +5,7 @@ import { Grid } from '@mui/material';
 
 // import * as themes from "@uiw/codemirror-themes-all";
 
-// import useAppContext from '@chrome-extension-boilerplate/shared/lib/hooks/useAppContext';
+// import useAppContext from '@extension/shared/lib/hooks/useAppContext';
 
 interface TrackingDict {
   Operators: number;

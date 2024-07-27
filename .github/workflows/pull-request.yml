@@ -14,17 +14,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
+      - uses: pnpm/action-setup@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '22'
-
-      - name: Install pnpm
-        run: npm install -g pnpm
+          node-version-file: '.nvmrc'
+          cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile --prefer-offline
 
       # - name: Run Tests
       #   run: pnpm run test
@@ -33,13 +33,13 @@ jobs:
       #   run: pnpm run type-check
         
       - name: Lint
-        run: pnpm run lint
+        run: pnpm lint
 
       - name: Prettier 
-        run: pnpm run prettier
+        run: pnpm prettier
 
       - name: Build Project
-        run: pnpm run build
+        run: pnpm build
 
       - name: Zip Build Folder
         run: zip -r build.zip ./dist/

@@ -4,8 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import EnhancedToolbar from './components/Toolbar';
 import { Routing } from './routes';
-import { withErrorBoundary, withSuspense } from '@chrome-extension-boilerplate/shared';
-import useAppContext from '@chrome-extension-boilerplate/shared/lib/hooks/useAppContext';
+import { withErrorBoundary, withSuspense } from '@extension/shared';
+import useAppContext from '@extension/shared/lib/hooks/useAppContext';
 
 const theme = createTheme({
   // Customize your theme here
