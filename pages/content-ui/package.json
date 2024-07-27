@@ -32,7 +32,7 @@
     "@codemirror/theme-one-dark": "^6.1.2",
     "@codemirror/view": "^6.28.2",
     "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
+    "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
     "@replit/codemirror-vscode-keymap": "^6.0.2",
