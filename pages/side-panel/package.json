@@ -20,8 +20,8 @@
   "dependencies": {
     "@extension/shared": "workspace:*",
     "@extension/storage": "workspace:*",
-    "@mui/material": "^5.15.20",
-    "react-router-dom": "^6.23.1"
+    "@mui/material": "^5.16.5",
+    "react-router-dom": "^6.25.1"
   },
   "devDependencies": {
     "@extension/tailwindcss-config": "workspace:*",

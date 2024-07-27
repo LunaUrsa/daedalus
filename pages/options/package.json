@@ -21,7 +21,7 @@
     "@extension/shared": "workspace:*",
     "@extension/storage": "workspace:*",
     "@extension/ui": "workspace:*",
-    "@mui/material": "^5.15.20"
+    "@mui/material": "^5.16.5"
   },
   "devDependencies": {
     "@extension/tailwindcss-config": "workspace:*",

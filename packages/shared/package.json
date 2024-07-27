@@ -24,6 +24,6 @@
     "@extension/storage": "workspace:*",
     "@extension/tsconfig": "workspace:*",
     "@types/common-tags": "^1.8.4",
-    "tsup": "8.1.0"
+    "tsup": "8.2.3"
   }
 }
