@@ -5,7 +5,7 @@ import { css } from '@codemirror/lang-css';
 
 // import * as themes from "@uiw/codemirror-themes-all";
 
-// import useAppContext from '@chrome-extension-boilerplate/shared/lib/hooks/useAppContext';
+// import useAppContext from '@extension/shared/lib/hooks/useAppContext';
 
 /* See https://github.com/uiwjs/react-codemirror for documentation */
 

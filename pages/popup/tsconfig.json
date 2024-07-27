@@ -1,31 +1,20 @@
 {
-  "extends": "@chrome-extension-boilerplate/tsconfig/base",
+  "extends": "@extension/tsconfig/base",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"],
-      "@lib/*": ["../../packages/shared/lib/*"]
+      "@src/*": [
+        "src/*"
+      ]
     },
     "jsx": "react-jsx",
-    "types": ["chrome"]
-    // "allowJs": true,
-    // "skipLibCheck": true,
-    // "esModuleInterop": true,
-    // "allowSyntheticDefaultImports": true,
-    // "forceConsistentCasingInFileNames": true,
-    // "lib": [
-    //   "dom",
-    //   "dom.iterable",
-    //   "esnext"
-    // ],
-    // "noFallthroughCasesInSwitch": true,
-    // "module": "esnext",
-    // "moduleResolution": "node",
-    // "resolveJsonModule": true,
-    // "isolatedModules": true,
-    // "noEmit": true,
-    // "strict": true,
-    // "target": "es6",
+    "types": [
+      "chrome"
+    ]
   },
-  "include": ["src", "../../packages/shared/@types", "../../packages/shared/lib"]
+  "include": [
+    "src",
+    "../../packages/shared/@types",
+    "../../packages/shared/lib"
+  ]
 }

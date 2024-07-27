@@ -1,7 +1,7 @@
-import { withErrorBoundary, withSuspense } from '@chrome-extension-boilerplate/shared';
+import { withErrorBoundary, withSuspense } from '@extension/shared';
 import { Box, Grid } from '@mui/material';
 import '@mui/material/styles';
-import useAppContext from '@chrome-extension-boilerplate/shared/lib/hooks/useAppContext';
+import useAppContext from '@extension/shared/lib/hooks/useAppContext';
 import Toolbar from './components/ScriptToolbar';
 import { useWorkbenchLogic } from './hooks/useWorkbenchLogic';
 import { useFreshUserOptions } from './hooks/useFreshUserOptions';

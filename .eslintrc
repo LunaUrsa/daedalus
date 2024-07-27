@@ -36,15 +36,13 @@
   },
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "import/no-unresolved": "off",
-    "react/prop-types": "off" // Turn off prop-types rule as we're using TypeScript
+    "import/no-unresolved": "off"
   },
   "globals": {
     "chrome": "readonly"
   },
   "ignorePatterns": [
     "watch.js",
-    "dist/**",
-    "packages/shared/dist/**"
+    "dist/**"
   ]
 }

@@ -1,6 +1,6 @@
 {
-  "name": "@chrome-extension-boilerplate/popup",
-  "version": "1.1.4",
+  "name": "@extension/popup",
+  "version": "0.2.2",
   "description": "chrome extension popup",
   "private": true,
   "sideEffects": true,
@@ -8,17 +8,19 @@
     "dist/**"
   ],
   "scripts": {
-    "clean": "rimraf ./dist && rimraf .turbo",
-    "build": "pnpm run clean && tsc --noEmit && vite build",
-    "build:watch": "cross-env __DEV__=true vite build -w --mode development",
+    "clean": "rimraf ./dist",
+    "build": "pnpm run clean&& pnpm type-check && vite build",
+    "build:watch": "cross-env __DEV__=true vite build --mode development",
     "dev": "pnpm build:watch",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "pnpm lint --fix",
-    "prettier": "prettier . --write",
+    "prettier": "prettier . --write --ignore-path ../../.prettierignore",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@chrome-extension-boilerplate/shared": "workspace:*",
+    "@extension/shared": "workspace:*",
+    "@extension/storage": "workspace:*",
+    "@extension/content-runtime-script": "workspace:*",
     "@codemirror/autocomplete": "^6.16.3",
     "@codemirror/lang-css": "^6.2.1",
     "@codemirror/lint": "^6.8.1",
@@ -38,9 +40,10 @@
     "uuid": "^10.0.0"
   },
   "devDependencies": {
-    "@chrome-extension-boilerplate/hmr": "workspace:*",
-    "@chrome-extension-boilerplate/tailwindcss-config": "workspace:*",
-    "@chrome-extension-boilerplate/tsconfig": "workspace:*",
+    "@extension/tailwindcss-config": "workspace:*",
+    "@extension/tsconfig": "workspace:*",
+    "@extension/vite-config": "workspace:*",
+    "@types/node": "^20.14.10",
     "@types/react-beautiful-dnd": "^13.1.8"
   }
 }

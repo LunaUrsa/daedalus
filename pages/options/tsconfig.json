@@ -1,13 +1,20 @@
 {
-  "extends": "@chrome-extension-boilerplate/tsconfig/base",
+  "extends": "@extension/tsconfig/base",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/*"],
-      "@lib/*": ["../../packages/shared/lib/*"]
+      "@src/*": [
+        "src/*"
+      ]
     },
     "jsx": "react-jsx",
-    "types": ["chrome"]
+    "types": [
+      "chrome"
+    ]
   },
-  "include": ["src", "../../packages/shared/@types", "../../packages/shared/lib"]
+  "include": [
+    "src",
+    "../../packages/shared/@types",
+    "../../packages/shared/lib"
+  ]
 }
