@@ -8,8 +8,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import type { DropResult, DraggableProvided, DroppableProvided } from 'react-beautiful-dnd';
 
-import useAppContext from '@chrome-extension-boilerplate/shared/lib/hooks/useAppContext';
-import { saveToStorage } from '@chrome-extension-boilerplate/shared/lib/utils';
+import useAppContext from '@extension/shared/lib/hooks/useAppContext';
+import { saveToStorage } from '@extension/shared/lib/utils';
 
 const ShortcutsPage: React.FC = () => {
   const [destination, setDestination] = useState<string>('');

@@ -1,8 +1,16 @@
 {
-  "extends": "@chrome-extension-boilerplate/tsconfig/utils",
+  "extends": "@extension/tsconfig/utils",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "types": [
+      "chrome"
+    ]
   },
-  "exclude": ["lib/injections/**/*"],
-  "include": ["lib", "index.ts"]
+  "exclude": [
+    "lib/injections/**/*"
+  ],
+  "include": [
+    "lib",
+    "index.ts"
+  ]
 }

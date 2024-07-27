@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Box,
   Button,
@@ -8,7 +9,7 @@ import {
   MenuItem,
   Select,
   Tooltip,
-  Typography
+  Typography,
 } from '@mui/material';
 import {
   KeyboardArrowUp,
@@ -38,14 +39,14 @@ import {
   handleAlwaysClearTraces,
 } from '../util/scriptWorkbench';
 import { useEffect, useRef, useState } from 'react';
-// import useAppContext from '@chrome-extension-boilerplate/shared/lib/hooks/useAppContext';
+// import useAppContext from '@extension/shared/lib/hooks/useAppContext';
 import {
   handleFoldClick,
   // handleFullScreenClick,
   handleSplitScreenClick,
 } from '../util/codeMirror';
 import { EditorView } from '@codemirror/view';
-import { defaultUserPreferences } from '@chrome-extension-boilerplate/shared/lib/constants';
+import { defaultUserPreferences } from '@extension/shared/lib/constants';
 
 interface ToolbarProps {
   editorViewRef: React.MutableRefObject<EditorView | null>;
@@ -144,8 +145,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ editorViewRef }) => {
         backgroundColor: 'secondary.main',
         borderRadius: '5px',
         padding: '0 8px',
-      }}
-    >
+      }}>
       <Button
         onClick={handleTraceClearClick}
         tabIndex={0}
@@ -163,11 +163,8 @@ const Toolbar: React.FC<ToolbarProps> = ({ editorViewRef }) => {
           textTransform: 'none',
           minWidth: 'auto',
         }}
-        startIcon={<Clear />}
-      >
-        <Typography sx={{ textTransform: 'none', fontSize: 'inherit' }}>
-          Clear Traces
-        </Typography>
+        startIcon={<Clear />}>
+        <Typography sx={{ textTransform: 'none', fontSize: 'inherit' }}>Clear Traces</Typography>
       </Button>
       <Tooltip title="Clear traces on every run">
         <Checkbox

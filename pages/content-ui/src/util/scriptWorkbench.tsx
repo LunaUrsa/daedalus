@@ -1,5 +1,5 @@
 import React from 'react';
-import { saveToStorage } from '@chrome-extension-boilerplate/shared/lib/utils';
+import { saveToStorage } from '@extension/shared/lib/utils';
 import { EditorView } from 'codemirror';
 import { SelectChangeEvent } from 'node_modules/@mui/material';
 
@@ -64,7 +64,7 @@ export const hideToastContainer = (traceRef: React.RefObject<HTMLElement>) => {
                 // toastMessage = toastMessage.slice(1)
                 const tableContainer = traceRef.current;
                 if (toastMessage.includes('Success')) {
-                  toastMessage = toastMessage.slice(1)
+                  toastMessage = toastMessage.slice(1);
                   // tableContainer.style.backgroundColor = '#1d1d1d';
                   tableContainer.style.color = '#28a745';
                 } else if (toastMessage.includes('Error')) {
@@ -73,10 +73,8 @@ export const hideToastContainer = (traceRef: React.RefObject<HTMLElement>) => {
 
                   // Remove the '(x.xxx s)' from the error message
                   toastMessage = 'Error: ' + toastMessage.slice(toastMessage.indexOf(')') + 1);
-
                 }
                 // console.log('toastMessage2:', toastMessage)
-
 
                 // Create a new table row with the toast message
                 const newRow = document.createElement('tr');
@@ -109,7 +107,6 @@ export const hideToastContainer = (traceRef: React.RefObject<HTMLElement>) => {
 
 export const modifyTraceTable = (traceRef: React.RefObject<HTMLElement>) => {
   if (traceRef.current) {
-
     const modifyTableRows = (mutationsList: MutationRecord[]) => {
       for (const mutation of mutationsList) {
         if (mutation.type === 'childList') {
@@ -122,9 +119,10 @@ export const modifyTraceTable = (traceRef: React.RefObject<HTMLElement>) => {
                 // console.log('Processing node:', node);
                 const firstTd = node.children[0];
                 // console.log('firstTd:', firstTd);
-                if (firstTd
-                  && !firstTd.hasAttribute('data-bind')
-                  && firstTd.id !== 'toast-message' // Because we add the new toast message to the table
+                if (
+                  firstTd &&
+                  !firstTd.hasAttribute('data-bind') &&
+                  firstTd.id !== 'toast-message' // Because we add the new toast message to the table
                 ) {
                   firstTd.remove();
                 }
@@ -283,9 +281,7 @@ export const handleApiExplorerClick = (event: React.MouseEvent) => {
   }
 };
 
-export const handleAlwaysClearTraces = (
-  setAlwaysClearTraces: React.Dispatch<React.SetStateAction<boolean>>,
-) => {
+export const handleAlwaysClearTraces = (setAlwaysClearTraces: React.Dispatch<React.SetStateAction<boolean>>) => {
   setAlwaysClearTraces(prevValue => !prevValue);
 };
 

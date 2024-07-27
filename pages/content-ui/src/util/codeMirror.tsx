@@ -45,7 +45,7 @@ import { vscodeKeymap } from '@replit/codemirror-vscode-keymap';
 // import { oneDark, oneDarkTheme } from "@codemirror/theme-one-dark";
 import { handleEditorChange } from './scriptWorkbench';
 import { zebraStripes } from './zebraStripes';
-import { saveToStorage } from '@chrome-extension-boilerplate/shared/lib/utils';
+import { saveToStorage } from '@extension/shared/lib/utils';
 // import { asyncRun } from './py-worker';
 
 // const pythonLinter = () => {
@@ -301,18 +301,18 @@ function foldAllRecursive(view: EditorView) {
   const state = view.state;
 
   // Traverse the syntax tree and collect all foldable ranges
-  const foldRanges: { from: number, to: number }[] = [];
+  const foldRanges: { from: number; to: number }[] = [];
   syntaxTree(state).iterate({
     enter(node) {
-      const isFoldable = foldable(state, node.from, node.to)
+      const isFoldable = foldable(state, node.from, node.to);
       if (isFoldable) {
         foldRanges.push({ from: isFoldable.from, to: isFoldable.to });
       }
-    }
+    },
   });
 
   view.dispatch({
-    effects: foldRanges.map(range => foldEffect.of({ from: range.from, to: range.to }))
+    effects: foldRanges.map(range => foldEffect.of({ from: range.from, to: range.to })),
   });
 }
 

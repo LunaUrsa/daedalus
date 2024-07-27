@@ -3,7 +3,7 @@ import App from '@src/app';
 // eslint-disable-next-line
 // @ts-ignore
 import tailwindcssOutput from '@src/tailwind-output.css?inline';
-import { AppProvider } from '@chrome-extension-boilerplate/shared/lib/context/AppContext';
+import { AppProvider } from '@extension/shared/lib/context/AppContext';
 
 const root = document.createElement('div');
 root.id = 'sap-cpq-tools';

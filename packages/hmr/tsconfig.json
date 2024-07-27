@@ -1,7 +1,14 @@
 {
-  "extends": "@chrome-extension-boilerplate/tsconfig/utils",
+  "extends": "@extension/tsconfig/utils",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "types": [
+      "chrome"
+    ]
   },
-  "include": ["lib", "index.ts", "rollup.config.mjs"]
+  "include": [
+    "lib",
+    "index.ts",
+    "rollup.config.mjs"
+  ]
 }

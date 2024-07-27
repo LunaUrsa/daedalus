@@ -6,8 +6,8 @@ import type { DropResult, DraggableProvided, DroppableProvided } from 'react-bea
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import ModEditor from '../components/ModEditor';
-import useAppContext from '@chrome-extension-boilerplate/shared/lib/hooks/useAppContext';
-import { saveToStorage } from '@chrome-extension-boilerplate/shared/lib/utils';
+import useAppContext from '@extension/shared/lib/hooks/useAppContext';
+import { saveToStorage } from '@extension/shared/lib/utils';
 
 const ModsPage: React.FC = () => {
   const [activeEditId, setActiveEditId] = useState<string | null>(null);
