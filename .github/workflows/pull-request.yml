@@ -5,7 +5,7 @@ on:
     branches:
       - main
 jobs:
-  release:
+  pull_request:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -43,3 +43,8 @@ jobs:
 
       - name: Zip Build Folder
         run: zip -r build.zip ./dist/
+
+      - name: Auto-assign PR
+        uses: kentaro-m/auto-assign-action@v1.2.5
+        with:
+          configuration-path: '.github/auto_assign.yml'
