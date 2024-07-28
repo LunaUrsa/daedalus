@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LunaUrsa/sap-cpq-tools.git"
+    "url": "https://github.com/LunaUrsa/daedalus.git"
   },
   "scripts": {
     "clean": "rimraf dist && rimraf .turbo && turbo clean",
@@ -22,10 +22,7 @@
     "lint": "turbo lint --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
     "lint:fix": "turbo lint:fix --continue -- --fix --cache --cache-location node_modules/.cache/.eslintcache",
     "prettier": "turbo prettier --continue -- --cache --cache-location node_modules/.cache/.prettiercache",
-    "prepare": "husky",
-    "update-version": "run-script-os",
-    "update-version:win32": "bash update_version.sh",
-    "update-version:default": "./update_version.sh"
+    "prepare": "husky"
   },
   "type": "module",
   "lint-staged": {

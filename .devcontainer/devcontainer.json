@@ -1,0 +1,53 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "Daedalus",
+	"build": {
+		"dockerfile": "../Dockerfile"
+		// "args": {
+		// 	"BASE_IMAGE": "node:22.2.0-alpine"
+		// }
+	},
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "pnpm install",
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"eslint.format.enable": true,
+				"editor.formatOnPaste": true,
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+				"editor.codeActionsOnSave": {
+					"source.fixAll.eslint": "always"
+				},
+				"eslint.validate": [
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact"
+				],
+				"eslint.workingDirectories": [
+					{
+						"mode": "auto"
+					}
+				]
+			},
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"rvest.vs-code-prettier-eslint",
+				"streetsidesoftware.code-spell-checker"
+			]
+		}
+	},
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "node"
+	// Workspace stuff to automatically open the workspace when opening the devcontainer
+	// "workspaceFolder": "/workspace",
+	// "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+}

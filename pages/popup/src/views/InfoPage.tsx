@@ -243,7 +243,7 @@ const InfoPage = () => {
               </Typography>
               <Typography variant="body1" paragraph>
                 The source code is available on{' '}
-                <Link href="https://github.com/lunaursa/sap-cpq-tools" target="_blank" rel="noopener">
+                <Link href="https://github.com/lunaursa/daedalus" target="_blank" rel="noopener">
                   <strong>GitHub</strong>
                 </Link>{' '}
                 and you are encouraged to contribute! Pull requests are very welcome! If you have suggestions or

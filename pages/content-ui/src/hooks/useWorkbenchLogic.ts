@@ -39,7 +39,7 @@ export const useWorkbenchLogic = (userOptions: UserOptions) => {
     // }
 
     if (window.location.href.includes('ScriptWorkbench')) {
-      const root = document.getElementById('sap-cpq-tools');
+      const root = document.getElementById('daedalus');
       const toolbarElement = document.getElementsByClassName('dev-admin-page')[0];
       if (toolbarElement && root) {
         toolbarElement.prepend(root);
@@ -60,7 +60,7 @@ export const useWorkbenchLogic = (userOptions: UserOptions) => {
       handleEditorChange(mainViewRef, userOptions);
     } else if (window.location.href.includes('global-scripts')) {
       console.log('globalscripts');
-      const root = document.getElementById('sap-cpq-tools');
+      const root = document.getElementById('daedalus');
 
       const scriptWindow = document.querySelector('cpq-scripting-codemirror') as HTMLElement;
       if (scriptWindow && root) {

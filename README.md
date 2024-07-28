@@ -5,7 +5,7 @@
 ![](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
 ![](https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![](https://badges.aleen42.com/src/vitejs.svg)
-![GitHub action badge](https://github.com/LunaUrsa/sap-cpq-tools/actions/workflows/build-and-release.yml/badge.svg)
+![GitHub action badge](https://github.com/LunaUrsa/daedalus/actions/workflows/build-and-release.yml/badge.svg)
 
 </div>
 
@@ -32,7 +32,7 @@ Of all the CPQ systems, SAP CPQ certainly is one of them. This extension is desi
 4. More to come!
 
 ## Install <a name="install"></a>
-1. Go to the [releases page](https://github.com/LunaUrsa/sap-cpq-tools/releases) and download the latest release zip
+1. Go to the [releases page](https://github.com/LunaUrsa/daedalus/releases) and download the latest release zip
 2. Unzip the file
 
 > [!IMPORTANT]
@@ -69,7 +69,7 @@ This plugin is built using:
 Check out - [Chrome Extension Boilerplate](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite) for full details.
 
 ## Want to help?
-Run `pnpm dev` (it's run parallel with pnpm dev-server automatically)
-- When you run with Windows, you should run as administrator. (Issue#456)
-
-Then follow the above install instructions
+1. Clone the repo
+2. (Recommended) Open the project in a devcontainer, wait for the install to finish
+3. (Recommended) Open up the project workspace in vscode
+4. Run `pnpm dev` (it's run parallel with pnpm dev-server automatically)
