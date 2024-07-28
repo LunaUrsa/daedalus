@@ -6,7 +6,7 @@ import tailwindcssOutput from '@src/tailwind-output.css?inline';
 import { AppProvider } from '@extension/shared/lib/context/AppContext';
 
 const root = document.createElement('div');
-root.id = 'sap-cpq-tools';
+root.id = 'daedalus';
 root.style.display = 'none';
 
 document.body.appendChild(root);

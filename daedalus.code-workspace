@@ -1,0 +1,34 @@
+{
+    "folders": [
+        {
+            "path": "."
+        },
+    ],
+    "settings": {
+        "files.exclude": {
+            "**/.devcontainer": true,
+            "**/Dockerfile": true,
+            "**/.github": true,
+            "**/.husky": true,
+            "**/.turbo": true,
+            "**/.pnpm-store": true,
+            "**/.vscode": true,
+            "**/node_modules": true,
+            "**/dist": true,
+            "**/.dockerignore": true,
+            "**/.eslintignore": true,
+            "**/.gitignore": true,
+            "**/.eslintrc": true,
+            "**/.npmrc": true,
+            "**/.nvmrc": true,
+            "**/.prettierignore": true,
+            "**/.prettierrc": true,
+            "**/.releaserc.json": true,
+            "**/LICENSE": true,
+            "**/package-lock.json": true,
+            "**/pnpm-lock.yaml": true,
+            "**/pnpm-workspace.yaml": true,
+            "**/turbo.json": true
+        }
+    }
+}
